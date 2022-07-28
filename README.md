@@ -21,7 +21,7 @@ We released docker images that can use on different workstaion.
     Run this script to pull docker image to your workstation.
 
     ```
-        source docker_run.sh
+    source docker_run.sh
     ```
 
 2. Docker Join
@@ -29,7 +29,7 @@ We released docker images that can use on different workstaion.
     If want to enter same docker image, type below command.
 
     ```
-        source docker_join.sh
+    source docker_join.sh
     ```
 
 3. Catkin_make
@@ -120,6 +120,7 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
@@ -130,6 +131,7 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=true method:=RL_mm
@@ -166,6 +168,7 @@ The useful command for procman list below.
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false times:=10
@@ -174,6 +177,7 @@ The useful command for procman list below.
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true times:=10
@@ -189,6 +193,7 @@ The useful command for procman list below.
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false times:=10
@@ -197,6 +202,7 @@ The useful command for procman list below.
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
+        source install.sh
         source catkin_make.sh
         source environment.sh
         roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true times:=10
