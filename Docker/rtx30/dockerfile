@@ -1,0 +1,40 @@
+FROM argnctu/pokingbot-rl:rtx30
+
+#  environment
+ENV DEBIAN_FRONTEND noninteractive
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV ROS_DISTRO melodic
+
+# install related package
+RUN apt-key del 7fa2af80
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub
+
+RUN apt-get -o Acquire::ForceIPv4=true update && apt-get -o Acquire::ForceIPv4=true install --no-install-recommends -y \
+    ros-$ROS_DISTRO-dynamixel-sdk \
+    ros-melodic-moveit-* \
+    ros-melodic-smach \
+    ros-melodic-smach-ros \
+    ros-melodic-executive-smach \
+    ros-melodic-smach-viewer
+
+RUN apt install -y ssh
+
+#  add ssh key
+ARG SSH_PRIVATE_KEY
+RUN mkdir /root/.ssh/
+RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+# clone repo and catkin_make
+RUN cd ${HOME} && git clone --recursive git@github.com:ARG-NCTU/mm_doorgym.git
+
+RUN /bin/bash -c '. /opt/ros/melodic/setup.bash \
+    && cd ~/mm_doorgym/catkin_ws \
+    && catkin_make'
+
+# download goal yaml file
+RUN cd ~/mm_doorgym/catkin_ws/src/pokingbot_ros/mesh \
+    && gdown https://drive.google.com/uc?id=1OPnIktgxAhfqkBWskPRorzmday7vkvf- 
