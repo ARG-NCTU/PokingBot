@@ -11,6 +11,8 @@ from std_msgs.msg import Bool
 from scipy.spatial.transform import Rotation as R
 import yaml
 import time
+from gazebo_msgs.msg import *
+from gazebo_msgs.srv import *
 from std_srvs.srv import Trigger
 from gazebo_msgs.msg import ContactsState
 
@@ -37,8 +39,6 @@ class GoalNav(object):
         self.vel_ratio = 0
 
         self.total_traj = []
-        self.tra = []
-        self.pose = PoseStamped()
 
         # network
         obs_dim = 243
@@ -72,7 +72,7 @@ class GoalNav(object):
             "laser_in",  LaserScan, self.cb_laser, queue_size=1)
         self.initial = rospy.ServiceProxy("/husky_ur5/init", Trigger)
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
-
+        self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.loop()
 
     def loop(self):
@@ -93,7 +93,13 @@ class GoalNav(object):
                 # output result 
                 d = {'success_rate':s_r, "fail_rate":f_r, "average_coillision":a_c}
 
-                with open(os.path.join(self.my_dir,"../rl_oa_result.yaml"), "w") as f:
+                tra = {'environment' : "room_door", "policy": "RL_oa", "trajectories" : self.total_traj}
+
+                with open(os.path.join(self.my_dir,"../RL_oa_trajectory.yaml"), "w") as f:
+
+                    yaml.dump(tra, f)
+
+                with open(os.path.join(self.my_dir,"../RL_oa_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 
@@ -139,8 +145,6 @@ class GoalNav(object):
         if self.goal is None:
             self.pos_track = None
             return
-
-        self.pose = msg.pose
 
         # caculate angle diff
         new_pos = np.array(
@@ -203,9 +207,14 @@ class GoalNav(object):
                 
         begin = time.time()
 
+        tra = []
+
         while(1):
 
-            
+            robot_pose = self.get_robot_pos("robot", "")
+            r_pose = {"position" : [robot_pose.pose.position.x, robot_pose.pose.position.y, robot_pose.pose.position.z],
+                      "orientation" : [robot_pose.pose.orientation.x, robot_pose.pose.orientation.y, robot_pose.pose.orientation.z, robot_pose.pose.orientation.w]}
+            tra.append(r_pose)
 
             # reshape
             laser = self.laser_stack.reshape(-1)
@@ -228,10 +237,12 @@ class GoalNav(object):
             dis = np.linalg.norm(self.goal-self.last_pos)
             if dis < 0.8:
                 self.success += 1
+                self.total_traj.append(tra[0:-1:50])
                 rospy.loginfo("goal reached")
                 break
 
-            if((time.time() - begin) >= 180):
+            if((time.time() - begin) >= 60):
+                self.total_traj.append(tra[0:-1:50])
                 break
 
 if __name__ == "__main__":

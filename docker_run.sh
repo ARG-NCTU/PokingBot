@@ -58,5 +58,5 @@ docker run -it \
   $DOCKER_OPTS \
   --privileged \
   --security-opt seccomp=unconfined \
-  argnctu/mm_doorgym:rtx30 \
+  argnctu/mm_doorgym:latest \
   bash

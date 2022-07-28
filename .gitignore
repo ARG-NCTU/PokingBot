@@ -49,3 +49,6 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+*.yaml
+.catkin_workspace
+catkin_ws/src/CMakeLists.txt

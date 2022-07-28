@@ -22,6 +22,8 @@ class GoalNav(object):
 
         self.goal_totoal = data['goal']
 
+        self.total_traj = []
+
         # metric
         self.count = 0
         self.total = len(self.goal_totoal)
@@ -35,6 +37,7 @@ class GoalNav(object):
         self.state_pub = rospy.Publisher('/state', String, queue_size=10)
         self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
+        self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.loop()
 
     def loop(self):
@@ -55,7 +58,13 @@ class GoalNav(object):
                 # output result 
                 d = {'success_rate':s_r, "fail_rate":f_r, "average_coillision":a_c}
 
-                with open(os.path.join(self.my_dir,"../tare_result.yaml"), "w") as f:
+                tra = {'environment' : "room_door", "policy": "TARE", "trajectories" : self.total_traj}
+
+                with open(os.path.join(self.my_dir,"../TARE_trajectory.yaml"), "w") as f:
+
+                    yaml.dump(tra, f)
+
+                with open(os.path.join(self.my_dir,"../TARE_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
                 
@@ -96,8 +105,16 @@ class GoalNav(object):
 
         begin = time.time()
 
+        tra = []
+
         # check robot navigate to goal
         while(1):
+
+            robot_pose = self.get_robot_pos("robot", "")
+            r_pose = {"position" : [robot_pose.pose.position.x, robot_pose.pose.position.y, robot_pose.pose.position.z],
+                      "orientation" : [robot_pose.pose.orientation.x, robot_pose.pose.orientation.y, robot_pose.pose.orientation.z, robot_pose.pose.orientation.w]}
+            tra.append(r_pose)
+
             robot_pose = self.get_robot_pos("robot","")
 
             x, y = robot_pose.pose.position.x, robot_pose.pose.position.y
