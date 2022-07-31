@@ -51,7 +51,7 @@ docker run -it \
   -v "/dev:/dev" \
   -v "/lib/modules:/lib/modules" \
   --workdir "/home/argsubt/mm_doorgym" \
-  --user "argsubt:argsubt" \
+  --user "root:root" \
   --name argsubt \
   --network host \
   --rm \
