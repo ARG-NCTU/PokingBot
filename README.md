@@ -8,6 +8,14 @@ Deep Reinforcement Learning-based Mobile Manipulator Controls for Interactive Na
 git clone --recursive git@github.com:ARG-NCTU/mm_doorgym.git
 ``` 
 
+## Download model and goal.yaml
+
+Run below command to download model and goal.yaml before you inference all experiment.
+
+```
+python3 download.py
+```
+
 ## Set up the Docker 
 
 The all required environment was organized, only need laptop or computer with GPU, and make sure install docker already.
@@ -92,7 +100,6 @@ The useful command for procman list below.
 
     Following it order to run command, 03_robot select **husky_stick** and 05_inference chose **pokingbot**.
 
---- 
 * DoorGym
 
     Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **state_machine**.
@@ -122,6 +129,7 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
+        python3 download.py
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
         ```
 
@@ -132,6 +140,7 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
+        python3 download.py
         roslaunch doorgym door_open.launch state:=true method:=RL_mm
         ```
 
