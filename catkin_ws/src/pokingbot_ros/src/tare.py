@@ -37,7 +37,6 @@ class GoalNav(object):
         self.state_pub = rospy.Publisher('/state', String, queue_size=10)
         self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
-        self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.loop()
 
     def loop(self):
@@ -78,7 +77,7 @@ class GoalNav(object):
 
     def cb_collision(self, msg):
         if self.collision_states == True:
-            if msg.states == [] and self.cnt > 1000:
+            if msg.states == [] and self.cnt > 4000:
                 self.collision_states = False
             else:
                 self.cnt += 1
@@ -124,10 +123,12 @@ class GoalNav(object):
                 
                 self.success += 1
                 self.state_pub.publish("stop")
+                self.total_traj.append(tra[0:-1:50])
                 break
 
-            if((time.time() - begin) >= 180):
+            if((time.time() - begin) >= 60):
                 self.state_pub.publish("stop")
+                self.total_traj.append(tra[0:-1:50])
                 break
 
             cur_x, cur_y = x,y

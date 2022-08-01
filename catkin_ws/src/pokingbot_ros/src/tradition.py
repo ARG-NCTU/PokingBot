@@ -113,7 +113,7 @@ class GoalNav(object):
 
     def cb_collision(self, msg):
         if self.collision_states == True:
-            if msg.states == [] and self.cnt > 1000:
+            if msg.states == [] and self.cnt > 10000:
                 self.collision_states = False
             else:
                 self.cnt += 1
