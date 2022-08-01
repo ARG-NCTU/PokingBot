@@ -94,7 +94,7 @@ The useful command for procman list below.
     roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=false ignored:=true
     ```
 
-    Following it order to run command 01 to 04, 03_robot select **husky_ur5**, 05_inference chose **tare**.
+    Following it order to run command, 03_robot select **husky_ur5**, 05_inference chose **tare**.
     
 * Pokingbot
 
