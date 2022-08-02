@@ -241,7 +241,7 @@ class GoalNav(object):
                 rospy.loginfo("goal reached")
                 break
 
-            if((time.time() - begin) >= 60):
+            if((time.time() - begin) >= 180):
                 self.total_traj.append(tra[0:-1:50])
                 break
 
