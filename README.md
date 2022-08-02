@@ -119,7 +119,6 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        python3 download.py
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
         ```
 
@@ -130,7 +129,6 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        python3 download.py
         roslaunch doorgym door_open.launch state:=true method:=RL_mm
         ```
 
