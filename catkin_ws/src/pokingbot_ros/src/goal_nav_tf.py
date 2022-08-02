@@ -49,7 +49,7 @@ class GoalNav(object):
         self.policy_network = tf.saved_model.load(model_path)
 
         # read yaml
-        with open(os.path.join(self.my_dir,"../goal.yaml"), 'r') as f:
+        with open(os.path.join(self.my_dir,"../../../../Data/goal.yaml"), 'r') as f:
             data = yaml.load(f)
 
         self.goal_totoal = data['goal']
@@ -59,6 +59,10 @@ class GoalNav(object):
         self.total = len(self.goal_totoal)
         self.success = 0
         self.coi = 0
+
+        # ex3
+        self.ex3 = rospy.get_param("~ex3")
+        self.box = rospy.get_param("~box")
 
         # pub cmd
         self.pub_cmd = rospy.Publisher("cmd_out", Twist, queue_size=1)
@@ -70,7 +74,13 @@ class GoalNav(object):
             "odom_in", PoseStamped, self.cb_odom, queue_size=1)
         self.sub_laser = rospy.Subscriber(
             "/RL/scan_label",  LaserScan, self.cb_laser, queue_size=1)
-        self.initial = rospy.ServiceProxy("/husky/init", Trigger)
+        if(self.ex3):
+            if(self.box):
+                self.initial = rospy.ServiceProxy("/husky_ur5/pull_box", Trigger)
+            else:
+                self.initial = rospy.ServiceProxy("/husky_ur5/pull_cardboard", Trigger)
+        else:
+            self.initial = rospy.ServiceProxy("/husky/init", Trigger)
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
         self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
         self.loop()
@@ -95,11 +105,18 @@ class GoalNav(object):
 
                 tra = {'environment' : "room_door", "policy": "Pokingbot", "trajectories" : self.total_traj}
 
-                with open(os.path.join(self.my_dir,"../pokingbot_trajectory.yaml"), "w") as f:
+                obj = ""
+                if(self.ex3):
+                    if(self.box):
+                        obj = "_box"
+                    else:
+                        obj = "_cardboard"
+
+                with open(os.path.join(self.my_dir,".../../../../Data/pokingbot" + obj +"_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../pokingbot_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Data/pokingbot" + obj + "_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 

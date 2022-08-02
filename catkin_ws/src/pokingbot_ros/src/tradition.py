@@ -50,7 +50,7 @@ class GoalNav(object):
         self.policy_network = tf.saved_model.load(model_path)
 
         # read yaml
-        with open(os.path.join(self.my_dir,"../goal.yaml"), 'r') as f:
+        with open(os.path.join(self.my_dir,"../../../../Data/goal.yaml"), 'r') as f:
             data = yaml.load(f)
 
         self.goal_totoal = data['goal']
@@ -95,11 +95,11 @@ class GoalNav(object):
 
                 tra = {'environment' : "room_door", "policy": "RL_oa", "trajectories" : self.total_traj}
 
-                with open(os.path.join(self.my_dir,"../RL_oa_trajectory.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Data/RL_oa_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../RL_oa_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Data/RL_oa_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 

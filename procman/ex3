@@ -35,11 +35,15 @@ cmd "04_box_detection" {
     host = "localhost";
 }
 group "05_inference" {
-    cmd "pokingbot" {
-        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ";
+    cmd "pokingbot_box" {
+        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=true";
         host = "localhost";
     }
-    cmd "tare" {
+    cmd "pokingbot_cardboard" {
+        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=false";
+        host = "localhost";
+    }
+    cmd "state_machine" {
         exec = "roslaunch pokingbot_ros pub_tf.launch ";
         host = "localhost";
     }
