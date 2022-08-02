@@ -82,7 +82,6 @@ The useful command for procman list below.
     source docker_run.sh
     catkin_make
     source environment.sh
-    python3 download_map.py
     roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=false ignored:=true
     ```
 
@@ -109,7 +108,6 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
     source docker_run.sh
     catkin_make
     source environment.sh
-    python3 download_map.py
     roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
     ```
 2. Second terminal for dooropen
