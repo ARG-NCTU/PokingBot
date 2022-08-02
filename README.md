@@ -8,14 +8,6 @@ Deep Reinforcement Learning-based Mobile Manipulator Controls for Interactive Na
 git clone --recursive git@github.com:ARG-NCTU/mm_doorgym.git
 ``` 
 
-## Download model and goal.yaml
-
-Run below command to download model and goal.yaml before you inference all experiment.
-
-```
-python3 download.py
-```
-
 ## Set up the Docker 
 
 The all required environment was organized, only need laptop or computer with GPU, and make sure install docker already.

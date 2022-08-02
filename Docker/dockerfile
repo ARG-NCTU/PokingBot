@@ -18,23 +18,16 @@ RUN apt-get -o Acquire::ForceIPv4=true update && apt-get -o Acquire::ForceIPv4=t
     ros-melodic-executive-smach \
     ros-melodic-smach-viewer
 
-# RUN apt install -y ssh
+RUN pip3 install gdown==4.5.1 
 
-# #  add ssh key
-# ARG SSH_PRIVATE_KEY
-# RUN mkdir /root/.ssh/
-# RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
-# RUN chmod 600 /root/.ssh/id_rsa
-# RUN touch /root/.ssh/known_hosts
-# RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN apt install -y zip
 
-# # clone repo and catkin_make
-# RUN cd ${HOME} && git clone --recursive git@github.com:ARG-NCTU/mm_doorgym.git
-
-# RUN /bin/bash -c '. /opt/ros/melodic/setup.bash \
-#     && cd ~/mm_doorgym/catkin_ws \
-#     && catkin_make'
-
-# # download goal yaml file
-# RUN cd ~/mm_doorgym/catkin_ws/src/pokingbot_ros/mesh \
-#     && gdown https://drive.google.com/uc?id=1OPnIktgxAhfqkBWskPRorzmday7vkvf- 
+# Download model
+RUN cd ~/ \
+    && mkdir -p model/goal \
+    && cd model \
+    && gdown https://drive.google.com/uc?id=1vfUtkI_RsKfIjmXwdeTdhn7CCcazIhLc \
+    && unzip pokingbot.zip \
+    && cd goal \
+    && gdown https://drive.google.com/uc?id=1fqrIDN86q8xMOqsdq1S96dtwsdZ50gLp \
+    && unzip rl_oa.zip
