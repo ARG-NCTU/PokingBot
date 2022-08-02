@@ -210,7 +210,7 @@ We arranged all command in procman, easy to inference our proposed method and Ru
 source docker_run.sh
 source catkin_make.sh
 source environment.sh
-source start_ex2.sh
+source start_ex3.sh
 ```
 After open procman, you will see below window.
 ![](images/ex3.png)
@@ -226,71 +226,88 @@ The useful command for procman list below.
 
     - Pokingbot
 
-        Following it order to run command, 02_environment select **pull_box**, 03_robot select **husky_stick_box**, 05_inference select **pokingbot**.
-
-        Open two terminal to set goal and enable robot to navigate goal, the related code can refer above.
+        Following it order to run command, 02_environment select **pull_box**, 03_robot select **husky_stick_box**, 05_inference select **pokingbot_box**.
 
     - DoorGym
 
-        Following it order to run command 01 to 03, 02_environment select **pull_box**, 03_robot select **husky_ur5_box**, then run pull code to remove box out of passage.
+        Following it order to run command, 02_environment select **pull_box**, 03_robot select **husky_ur5_box**, 05_inference select **state_machine**.
 
-        Please manual comment 46 and 110 rows and uncomment 47 and 108 rows on [inference_pull.py](https://github.com/kuolunwang/DoorGym/blob/master/catkin_ws/src/doorgym/src/inference_pull.py)
+        Open two terminals to run tare algorithm and pull model.
 
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym pull_box.launch 3dof:=false
-        ```
+        1. One terminal for tare
 
-        Then the fininsh pull box task, keep it order to execute 04 to 06, 05_inference select **tare**.
+            ```
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
 
-        Open one terminal to run tare algorithm.
+        2. Two terminal for DoorGym
 
-        ```
-        cd [path/to/autonomous_exploration_development_environment]
-        source docker_run.bash
-        catkin_make
-        source environment.sh
-        roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
-        ```
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=Doorgym box:=true
+            ```
 
     - 6 joints
 
-        The steps are same as DoorGym, only edit some code.
+        Change two terminal command.
 
-        Please manual comment 47 and 110 rows and uncomment 46 and 108 rows on [inference_pull.py](https://github.com/kuolunwang/DoorGym/blob/master/catkin_ws/src/doorgym/src/inference_pull.py)
-
-    - 3 DOF
-
-        The steps are same as DoorGym, only edit some code.
-
-        Please manual comment 110 rows and uncomment 108 rows on [inference_3dof_pull.py](https://github.com/kuolunwang/DoorGym/blob/master/catkin_ws/src/doorgym/src/inference_3dof_pull.py)
-
-        Replace pull code below.
         ```
         cd [path/to/DoorGym]
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym pull_box.launch 3dof:=true
+        roslaunch doorgym pull_box.launch method:=6joints box:=true
+        ```
+
+    - 3 DOF
+
+        Change two terminal command.
+
+        ```
+        cd [path/to/DoorGym]
+        source docker_run.sh
+        source catkin_make.sh
+        source environment.sh
+        roslaunch doorgym pull_box.launch method:=RL_mm box:=true
         ```
 
 
 * Cardboard
 
-    The all steps are same as box, before you execute it, please manual comment 108 rows and uncomment 110 rows on [inference_pull.py](https://github.com/kuolunwang/DoorGym/blob/master/catkin_ws/src/doorgym/src/inference_pull.py) and comment 108 rows and uncomment 110 rows on [inference_3dof_pull.py](https://github.com/kuolunwang/DoorGym/blob/master/catkin_ws/src/doorgym/src/inference_3dof_pull.py).
-
-    Then 02_environment select **pull_cardboard**.
+    The all steps are same as box, before you execute it, 02_environment select **pull_cardboard**.
 
     - For the Pokingbot
 
-        The 03_robot select **husky_stick_cardboard**.
+        The 03_robot select **husky_stick_cardboard**, 05_inference select **pokingbot_cardboard**.
 
     - For the other
 
-        The 03_robot select **husky_ur5_cardboard**
+        The 03_robot select **husky_ur5_cardboard**, 05_inference select **state_machine**.
+
+        * For DoorGym
+
+            ```
+            roslaunch doorgym pull_box.launch method:=Doorgym box:=false
+            ```
+
+        * For 6joints
+
+            ```
+            roslaunch doorgym pull_box.launch method:=6joints box:=false
+            ```
+
+        * For 3DOF
+
+            ```
+            roslaunch doorgym pull_box.launch method:=RL_mm box:=false
+            ```
 
 ## Behavior Tree
 
@@ -310,7 +327,7 @@ The useful command for procman list below.
 - Stop(ctrl＋t)
 - ReRun(ctrl+r)
 
-Following it order to run command, 03_robot select **husky_ur5** and 06_inference chose **tare**.
+Following it order to run command, 03_robot select **husky_ur5** and 06_inference chose **state_machine**.
 
 Open one terminal to open behavior tree.
 
@@ -329,7 +346,7 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
 
     ```
     cd [path/to/autonomous_exploration_development_environment]
-    source docker_run.bash
+    source docker_run.sh
     catkin_make
     source environment.sh
     roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
