@@ -40,16 +40,6 @@ class WheelTF(object):
             self.paraent_name
         )
 
-        # self.broadcaster.sendTransform(
-        #     (0,0,0),
-        #     (0,0,0,1),
-        #     rospy.Time.now(),
-        #     "map",
-        #     "odom"
-        # )
-
-        # self.broadcaster.sendTransform((0, 0, 0), (0, 0, 0, 1), rospy.Time.now(), "odom", self.paraent_name)
-
         pose_msg = PoseStamped()
         pose_msg.header.stamp = rospy.Time.now()
         pose_msg.header.frame_id = self.paraent_name
@@ -61,20 +51,7 @@ class WheelTF(object):
         pose_msg.pose.orientation.z = agent.pose.orientation.z
         pose_msg.pose.orientation.w = agent.pose.orientation.w
 
-
         self.pub_pose.publish(pose_msg)
-
-        # odom= Odometry()
-        # odom.header.stamp= rospy.Time.now()
-        # odom.header.frame_id = "odom"
-        # odom.pose.pose.position.x = agent.pose.position.x
-        # odom.pose.pose.position.y = agent.pose.position.y
-        # odom.pose.pose.position.z = agent.pose.position.z
-        # odom.pose.pose.orientation.x = agent.pose.orientation.x
-        # odom.pose.pose.orientation.y = agent.pose.orientation.y
-        # odom.pose.pose.orientation.z = agent.pose.orientation.z
-        # odom.pose.pose.orientation.w = agent.pose.orientation.w
-        # self.pub_odometry.publish(odom)
 
 
 
@@ -83,4 +60,3 @@ if __name__ == "__main__":
     wheeltf = WheelTF()
     while not rospy.is_shutdown():
         wheeltf.gazebo_odom()
-        # rospy.sleep(0.1)

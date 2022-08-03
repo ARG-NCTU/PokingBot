@@ -48,18 +48,6 @@ class GoalNav(object):
         model_path = os.path.join(self.my_dir, "../../../../../model/policy")
         self.policy_network = tf.saved_model.load(model_path)
 
-        # read yaml
-        with open(os.path.join(self.my_dir,"../../../../Data/goal.yaml"), 'r') as f:
-            data = yaml.load(f)
-
-        self.goal_totoal = data['goal']
-
-        # metric
-        self.count = 0
-        self.total = len(self.goal_totoal)
-        self.success = 0
-        self.coi = 0
-
         # ex3
         self.ex3 = rospy.get_param("~ex3")
         self.box = rospy.get_param("~box")
@@ -76,21 +64,35 @@ class GoalNav(object):
             "/RL/scan_label",  LaserScan, self.cb_laser, queue_size=1)
         if(self.ex3):
             if(self.box):
-                self.initial = rospy.ServiceProxy("/husky_ur5/pull_box", Trigger)
+                # read yaml
+                with open(os.path.join(self.my_dir,"../../../../Config/goal_ex3_box.yaml"), 'r') as f:
+                    data = yaml.load(f)
             else:
-                self.initial = rospy.ServiceProxy("/husky_ur5/pull_cardboard", Trigger)
+                # read yaml
+                with open(os.path.join(self.my_dir,"../../../../Config/goal_ex3_cardboard.yaml"), 'r') as f:
+                    data = yaml.load(f)
         else:
-            self.initial = rospy.ServiceProxy("/husky/init", Trigger)
+            # read yaml
+            with open(os.path.join(self.my_dir,"../../../../Config/goal_ex1.yaml"), 'r') as f:
+                data = yaml.load(f)
+
+        self.goal_totoal = data["pairs"]
+
+        # metric
+        self.count = 0
+        self.total = len(self.goal_totoal)
+        self.success = 0
+        self.coi = 0
+
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
         self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
+        self.set_init_pose_srv = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)
+        self.set_door_srv = rospy.ServiceProxy("/gazebo/set_model_configuration", SetModelConfiguration)
         self.loop()
 
     def loop(self):
 
         while(1):
-
-            # initial
-            self.initial()
 
             if(self.count == self.total):
                 # finish all goal
@@ -112,18 +114,61 @@ class GoalNav(object):
                     else:
                         obj = "_cardboard"
 
-                with open(os.path.join(self.my_dir,".../../../../Data/pokingbot" + obj +"_trajectory.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Config/pokingbot" + obj +"_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../../../../Data/pokingbot" + obj + "_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Config/pokingbot" + obj + "_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 
                 rospy.loginfo('End')
                 break
             else:
-                self.goal = self.goal_totoal[self.count]
+                req = ModelState()
+                req.model_name = 'robot'
+                req.pose.position.x = self.goal_totoal[self.count]['start'][0]
+                req.pose.position.y = self.goal_totoal[self.count]['start'][1]
+                req.pose.position.z = 0.1323
+                req.pose.orientation.x = 0.0
+                req.pose.orientation.y = 0.0
+                req.pose.orientation.z = -0.707
+                req.pose.orientation.w = 0.707
+
+                # set robot
+                self.set_init_pose_srv(req)
+
+                if(self.ex3):
+                    if(self.box):
+                        # set box position
+                        req = ModelState()
+                        req.model_name = 'pull_box'
+                        req.pose.position.x = 8.96242507935
+                        req.pose.position.y = 12.4507133386
+                        req.pose.position.z = 0.57499964254
+                        req.pose.orientation.x = 1.57141918775e-07
+                        req.pose.orientation.y = -1.8141635704e-07
+                        req.pose.orientation.z = 0.000529657457698
+                        req.pose.orientation.w = 1.0
+                        self.set_init_pose_srv(req)
+                    else:
+                        # set cardboard
+                        req = ModelState()
+                        req.model_name = 'pull_box'
+                        req.pose.position.x = 8.95191862859
+                        req.pose.position.y = 12.1063873859
+                        req.pose.position.z = 0.575066995938
+                        req.pose.orientation.x = -0.0013749844125
+                        req.pose.orientation.y = 3.13900522696e-07
+                        req.pose.orientation.z = -1.68650047537e-05
+                        req.pose.orientation.w = 1.0
+                        self.set_init_pose_srv(req)
+                else:
+                    # set door 
+                    self.set_door_srv("hinge_door_0", "", ["hinge"], [0])
+                    
+                # set goal
+                self.goal = self.goal_totoal[self.count]['goal'][0:2]
                 self.count += 1
                 self.auto = 1
                 self.inference()
@@ -273,7 +318,7 @@ class GoalNav(object):
                 self.success += 1
                 break
 
-            if((time.time() - begin) >= 180):
+            if((time.time() - begin) >= 60):
                 self.total_traj.append(tra[0:-1:50])
                 break
 

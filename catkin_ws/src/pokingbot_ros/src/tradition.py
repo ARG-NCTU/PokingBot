@@ -50,10 +50,10 @@ class GoalNav(object):
         self.policy_network = tf.saved_model.load(model_path)
 
         # read yaml
-        with open(os.path.join(self.my_dir,"../../../../Data/goal.yaml"), 'r') as f:
+        with open(os.path.join(self.my_dir,"../../../../Config/goal_ex1.yaml"), 'r') as f:
             data = yaml.load(f)
 
-        self.goal_totoal = data['goal']
+        self.goal_totoal = data["pairs"]
 
         # metric
         self.count = 0
@@ -70,17 +70,16 @@ class GoalNav(object):
             "odom_in", PoseStamped, self.cb_odom, queue_size=1)
         self.sub_laser = rospy.Subscriber(
             "laser_in",  LaserScan, self.cb_laser, queue_size=1)
-        self.initial = rospy.ServiceProxy("/husky_ur5/init", Trigger)
         self.sub_collision = rospy.Subscriber("/robot/bumper_states", ContactsState, self.cb_collision, queue_size=1)
         self.get_robot_pos = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
+        self.set_init_pose_srv = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)
+        self.set_door_srv = rospy.ServiceProxy("/gazebo/set_model_configuration", SetModelConfiguration)
+        self.arm_home_srv = rospy.ServiceProxy("/robot/ur5/go_home", Trigger)
         self.loop()
 
     def loop(self):
 
         while(1):
-
-            # initial
-            self.initial()
 
             if(self.count == self.total):
                 # finish all goal
@@ -95,18 +94,39 @@ class GoalNav(object):
 
                 tra = {'environment' : "room_door", "policy": "RL_oa", "trajectories" : self.total_traj}
 
-                with open(os.path.join(self.my_dir,"../../../../Data/RL_oa_trajectory.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Config/RL_oa_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../../../../Data/RL_oa_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Config/RL_oa_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 
                 rospy.loginfo('End')
                 break
             else:
-                self.goal = self.goal_totoal[self.count]
+                req = ModelState()
+                req.model_name = 'robot'
+                req.pose.position.x = self.goal_totoal[self.count]['start'][0]
+                req.pose.position.y = self.goal_totoal[self.count]['start'][1]
+                req.pose.position.z = 0.1323
+                req.pose.orientation.x = 0.0
+                req.pose.orientation.y = 0.0
+                req.pose.orientation.z = -0.707
+                req.pose.orientation.w = 0.707
+
+                # set robot
+                self.set_init_pose_srv(req)
+
+                # set door 
+                self.set_door_srv("hinge_door_0", "", ["hinge"], [0])
+
+                # set arm
+                self.arm_home_srv()
+
+                # set goal
+                self.goal = self.goal_totoal[self.count]['goal'][0:2]
+                
                 self.count += 1
                 self.auto = 1
                 self.inference()
@@ -241,7 +261,7 @@ class GoalNav(object):
                 rospy.loginfo("goal reached")
                 break
 
-            if((time.time() - begin) >= 180):
+            if((time.time() - begin) >= 60):
                 self.total_traj.append(tra[0:-1:50])
                 break
 
