@@ -165,7 +165,7 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false times:=10
+        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false
         ```
     - For 3 DOF
         ```
@@ -173,7 +173,7 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true times:=10
+        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true
         ```
 
 * VX300s
@@ -188,7 +188,7 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false times:=10
+        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false
         ```
     - For 3 DOF
         ```
@@ -196,7 +196,7 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true times:=10
+        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true
         ```
 
 ## Experiment3
