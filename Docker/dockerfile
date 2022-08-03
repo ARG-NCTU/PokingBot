@@ -24,10 +24,9 @@ RUN apt install -y zip
 
 # Download model
 RUN cd ~/ \
-    && mkdir -p model/goal \
+    && mkdir model \
     && cd model \
-    && gdown https://drive.google.com/uc?id=1vfUtkI_RsKfIjmXwdeTdhn7CCcazIhLc \
+    && gdown https://drive.google.com/uc?id=1__uGGmoJhg5xI_8okn9Ac-P1Fl7OdTuZ \
     && unzip pokingbot.zip \
-    && cd goal \
-    && gdown https://drive.google.com/uc?id=1fqrIDN86q8xMOqsdq1S96dtwsdZ50gLp \
+    && gdown https://drive.google.com/uc?id=1fnXkbar2pjV8VFlxrjdIgUPZpjGAgFuR \
     && unzip rl_oa.zip

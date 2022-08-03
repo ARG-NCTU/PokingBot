@@ -45,7 +45,7 @@ class GoalNav(object):
         gpu = tf.config.experimental.list_physical_devices('GPU')
         tf.config.experimental.set_memory_growth(gpu[0], True)
         self.my_dir = os.path.abspath(os.path.dirname(__file__))
-        model_path = os.path.join(self.my_dir, "../../../../../model/policy")
+        model_path = os.path.join(self.my_dir, "../../../../../model/pokingbot")
         self.policy_network = tf.saved_model.load(model_path)
 
         # ex3
