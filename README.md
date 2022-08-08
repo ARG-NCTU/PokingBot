@@ -249,7 +249,7 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=Doorgym box:=true
+            roslaunch doorgym pull_box.launch method:=DoorGym box:=true
             ```
 
     - 6 joints
@@ -292,7 +292,7 @@ The useful command for procman list below.
         * For DoorGym
 
             ```
-            roslaunch doorgym pull_box.launch method:=Doorgym box:=false
+            roslaunch doorgym pull_box.launch method:=DoorGym box:=false
             ```
 
         * For 6joints
