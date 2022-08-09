@@ -325,7 +325,7 @@ The useful command for procman list below.
 - Stop(ctrl＋t)
 - ReRun(ctrl+r)
 
-Following it order to run command, 03_robot select **husky_ur5** and 06_inference chose **state_machine**.
+Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **state_machine**.
 
 Open one terminal to open behavior tree.
 
@@ -338,7 +338,7 @@ roslaunch behavior_tree behavior_tree.launch
 you will see below gui, then press "Open Config..." and select open_door.tree, select Debug Mode will show below test button.
 ![](images/bt.png)
 
-Then open two termianl, one is run open_door algorithm, and the other one is open tare to navigate door and goal.
+Then open three termianl, one is run open_door algorithm, and the other one is open tare to navigate door and goal, the final run open behavior tree.
 
 1. One terminal for tare
 
@@ -357,6 +357,15 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
     source catkin_make.sh
     source environment.sh
     roslaunch doorgym door_open_bt.launch
+    ```
+
+3. Third terminal for behavior tree
+
+    ```
+    cd [path/to/mm_doorgym]
+    source docker_join.sh
+    source environment.sh
+    roslaunch open_door_bt bt_door_open.launch
     ```
 
 Finished above commands, you will see robot automatically run in the gazebo.
