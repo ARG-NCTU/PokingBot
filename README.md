@@ -487,7 +487,7 @@ Following the below steps to execute
     ```
     source docker_join.sh
     source environment.sh
-    roslaunch behavior_tree behavior_tree.launch
+    roslaunch behavior_tree behavior_tree.launch tree:=open_door.tree
     ```
 
 you will see below gui, then press "Open Config..." and select open_door.tree, select Debug Mode will show below test button.

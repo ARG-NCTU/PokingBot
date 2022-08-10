@@ -4,3 +4,9 @@
 [submodule "catkin_ws/src/real_to_sim_env"]
 	path = catkin_ws/src/real_to_sim_env
 	url = git@github.com:ARG-NCTU/real_to_sim_env.git
+[submodule "catkin_ws/src/behavior_tree_msgs"]
+	path = catkin_ws/src/behavior_tree_msgs
+	url = git@github.com:ARG-NCTU/behavior_tree_msgs.git
+[submodule "catkin_ws/src/behavior_tree"]
+	path = catkin_ws/src/behavior_tree
+	url = git@github.com:ARG-NCTU/behavior_tree.git
