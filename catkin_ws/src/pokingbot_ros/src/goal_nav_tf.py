@@ -51,6 +51,7 @@ class GoalNav(object):
         # ex3
         self.ex3 = rospy.get_param("~ex3")
         self.box = rospy.get_param("~box")
+        self.yaml = rospy.get_param("~yaml")
 
         # pub cmd
         self.pub_cmd = rospy.Publisher("cmd_out", Twist, queue_size=1)
@@ -62,19 +63,9 @@ class GoalNav(object):
             "odom_in", PoseStamped, self.cb_odom, queue_size=1)
         self.sub_laser = rospy.Subscriber(
             "/RL/scan_label",  LaserScan, self.cb_laser, queue_size=1)
-        if(self.ex3):
-            if(self.box):
-                # read yaml
-                with open(os.path.join(self.my_dir,"../../../../Config/goal_ex3_box.yaml"), 'r') as f:
-                    data = yaml.load(f)
-            else:
-                # read yaml
-                with open(os.path.join(self.my_dir,"../../../../Config/goal_ex3_cardboard.yaml"), 'r') as f:
-                    data = yaml.load(f)
-        else:
-            # read yaml
-            with open(os.path.join(self.my_dir,"../../../../Config/goal_ex1.yaml"), 'r') as f:
-                data = yaml.load(f)
+
+        with open(os.path.join(self.my_dir,"../../../../Config/"+ self.yaml), 'r') as f:
+            data = yaml.load(f)
 
         self.goal_totoal = data["pairs"]
 

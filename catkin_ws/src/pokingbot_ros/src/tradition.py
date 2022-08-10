@@ -27,6 +27,8 @@ class GoalNav(object):
         self.action_scale = {'linear': rospy.get_param(
             '~linear_scale', 0.3), 'angular': rospy.get_param("~angular_scale", 0.18)}
 
+        self.yaml = rospy.get_param("~yaml")
+
         self.auto = 0
         self.goal = None
         self.pos_track = None
@@ -50,7 +52,7 @@ class GoalNav(object):
         self.policy_network = tf.saved_model.load(model_path)
 
         # read yaml
-        with open(os.path.join(self.my_dir,"../../../../Config/goal_ex1.yaml"), 'r') as f:
+        with open(os.path.join(self.my_dir,"../../../../Config/" + self.yaml), 'r') as f:
             data = yaml.load(f)
 
         self.goal_totoal = data["pairs"]

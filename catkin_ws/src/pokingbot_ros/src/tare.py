@@ -16,8 +16,10 @@ class GoalNav(object):
         super().__init__()
 
         self.my_dir = os.path.abspath(os.path.dirname(__file__))
-         # read yaml
-        with open(os.path.join(self.my_dir,"../../../../Config/goal_ex1.yaml"), 'r') as f:
+        self.yaml = rospy.get_param("~yaml")
+
+        # read yaml
+        with open(os.path.join(self.my_dir,"../../../../Config/" + self.yaml), 'r') as f:
             data = yaml.load(f)
 
         self.goal_totoal = data["pairs"]

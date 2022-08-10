@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(door_detector_632)
+project(door_detector_room)
 
 set(CMAKE_BUILD_TYPE Release)
 set(BUILD_STATIC_LIBS ON)
@@ -95,7 +95,7 @@ link_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/door_detector_632.cpp
+#   src/${PROJECT_NAME}/door_detector_room.cpp
 # )
 
 install(DIRECTORY launch/

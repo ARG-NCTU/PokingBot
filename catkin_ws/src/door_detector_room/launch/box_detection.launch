@@ -39,6 +39,6 @@
 
     </node>
 
-    <node pkg="door_detector_632" type="box" name="box" output="screen" />
+    <node pkg="door_detector_room" type="box" name="box" output="screen" />
   </group>
 </launch>

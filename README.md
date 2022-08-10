@@ -71,48 +71,61 @@ The useful command for procman list below.
 
 * RL_oa
 
-    Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **rl_oa**.
+    Following the below steps to execute
+
+    1. 03_robot select **husky_ur5** 
+    2. 04_door_detection
+    3. 05_inference select **rl_oa**
+    4. 06_rviz
 
 * TARE
 
-    Open one terminal to run tare algorithm.
+    Following the below steps to execute
 
-    ```
-    cd [path/to/autonomous_exploration_development_environment]
-    source docker_run.sh
-    catkin_make
-    source environment.sh
-    roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=false ignored:=true
-    ```
+    1. Open one terminal to run tare algorithm.
 
-    Following it order to run command, 03_robot select **husky_ur5**, 05_inference chose **tare**.
+        ```
+        cd [path/to/autonomous_exploration_development_environment]
+        source docker_run.sh
+        catkin_make
+        source environment.sh
+        roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=false ignored:=true
+        ```
+
+    2. 03_robot select **husky_ur5** 
+    3. 04_door_detection
+    4. 05_inference select **tare**
+    5. 06_rviz
     
 * Pokingbot
 
-    Following it order to run command, 03_robot select **husky_stick** and 05_inference chose **pokingbot**.
+    Following the below steps to execute
+
+    1. 03_robot select **husky_stick** 
+    2. 04_door_detection
+    3. 05_inference select **pokingbot**
+    4. 06_rviz
 
 * DoorGym
 
-    Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **state_machine**.
+    Following the below steps to execute
 
-* RL_mm(Ours)
+    1. Open one terminal to run tare algorithm
 
-    Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **state_machine**.
+        ```
+        cd [path/to/autonomous_exploration_development_environment]
+        source docker_run.sh
+        catkin_make
+        source environment.sh
+        roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
+        ```
 
-Then open two termianl, one is run open_door algorithm, and the other one is open tare to navigate door and goal.
+    2. 03_robot select **husky_ur5** 
+    3. 04_door_detection
+    4. 05_inference select **state_machine**
+    5. 06_rviz
 
-1. One terminal for tare
-
-    ```
-    cd [path/to/autonomous_exploration_development_environment]
-    source docker_run.sh
-    catkin_make
-    source environment.sh
-    roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
-    ```
-2. Second terminal for dooropen
-
-    * For the DoorGym
+    6. Open another terminal to run door open
 
         ```
         cd [path/to/DoorGym]
@@ -122,7 +135,26 @@ Then open two termianl, one is run open_door algorithm, and the other one is ope
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
         ```
 
-    * For thr RL_mm
+* RL_mm(Ours)
+
+    Following the below steps to execute
+
+    1. Open one terminal to run tare algorithm
+
+        ```
+        cd [path/to/autonomous_exploration_development_environment]
+        source docker_run.sh
+        catkin_make
+        source environment.sh
+        roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
+        ```
+
+    2. 03_robot select **husky_ur5** 
+    3. 04_door_detection
+    4. 05_inference select **state_machine**
+    5. 06_rviz
+
+    6. Open two terminal to run door open
 
         ```
         cd [path/to/DoorGym]
@@ -155,49 +187,51 @@ The useful command for procman list below.
 
 * UR5
 
-    Following it order to run command, 03_robot select **husky_ur5**.
+    Following the below steps to execute
 
-    Open one terminal to run door open.
+    1. 03_robot select **husky_ur5**.
+    2. Open one terminal to run door open.
 
-    - For 6 joints
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false
-        ```
-    - For 3 DOF
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true
-        ```
+        - For 6 joints
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false yaml:=goal_ex2.yaml
+            ```
+        - For 3 DOF
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true yaml:=goal_ex2.yaml
+            ```
 
 * VX300s
 
-    Following it order to run command, 03_robot select **husky_vx300s**.
+    Following the below steps to execute
 
-    Open one terminal to run door open.
+    1. 03_robot select **husky_vx300s**.
+    2. Open one terminal to run door open.
 
-    - For 6 joints
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false
-        ```
-    - For 3 DOF
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true
-        ```
+        - For 6 joints
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false yaml:=goal_ex2.yaml
+            ```
+        - For 3 DOF
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true yaml:=goal_ex2.yaml
+            ```
 
 ## Experiment3
 
@@ -224,15 +258,25 @@ The useful command for procman list below.
 
     - Pokingbot
 
-        Following it order to run command, 02_environment select **pull_box**, 03_robot select **husky_stick_box**, 05_inference select **pokingbot_box**.
+        Following the below steps to execute
+
+        1. 02_environment select **pull_box**
+        2. 03_robot select **husky_stick_box** 
+        3. 04_box_detection
+        4. 05_inference select **pokingbot_box**
+        5. 06_rviz
 
     - DoorGym
 
-        Following it order to run command, 02_environment select **pull_box**, 03_robot select **husky_ur5_box**, 05_inference select **state_machine**.
+        Following the below steps to execute
 
-        Open two terminals to run tare algorithm and pull model.
+        1. 02_environment select **pull_box**
+        2. 03_robot select **husky_ur5_box** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
 
-        1. One terminal for tare
+        6. Open one terminal to run tare algorithm
 
             ```
             cd [path/to/autonomous_exploration_development_environment]
@@ -242,7 +286,7 @@ The useful command for procman list below.
             roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
             ```
 
-        2. Two terminal for DoorGym
+        7. Open two terminal to run pull
 
             ```
             cd [path/to/DoorGym]
@@ -254,57 +298,163 @@ The useful command for procman list below.
 
     - 6 joints
 
-        Change two terminal command.
+        Following the below steps to execute
 
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym pull_box.launch method:=6joints box:=true
-        ```
+        1. 02_environment select **pull_box**
+        2. 03_robot select **husky_ur5_box** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
 
+        6. Open one terminal to run tare algorithm
+
+            ```
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
+
+        7. Open two terminal to run pull
+
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=6joints box:=true
+            ```
     - 3 DOF
 
-        Change two terminal command.
+        Following the below steps to execute
 
-        ```
-        cd [path/to/DoorGym]
-        source docker_run.sh
-        source catkin_make.sh
-        source environment.sh
-        roslaunch doorgym pull_box.launch method:=RL_mm box:=true
-        ```
+        1. 02_environment select **pull_box**
+        2. 03_robot select **husky_ur5_box** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
 
+        6. Open one terminal to run tare algorithm
+
+            ```
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
+
+        7. Open two terminal to run pull
+
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=RL_mm box:=true
+            ```
 
 * Cardboard
 
-    The all steps are same as box, before you execute it, 02_environment select **pull_cardboard**.
+    - Pokingbot
 
-    - For the Pokingbot
+        Following the below steps to execute
 
-        The 03_robot select **husky_stick_cardboard**, 05_inference select **pokingbot_cardboard**.
+        1. 02_environment select **pull_cardboard**
+        2. 03_robot select **husky_stick_cardboard** 
+        3. 04_box_detection
+        4. 05_inference select **pokingbot_cardboard**
+        5. 06_rviz
 
-    - For the other
+    - DoorGym
 
-        The 03_robot select **husky_ur5_cardboard**, 05_inference select **state_machine**.
+        Following the below steps to execute
 
-        * For DoorGym
+        1. 02_environment select **pull_cardboard**
+        2. 03_robot select **husky_ur5_cardboard** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
 
-            ```
-            roslaunch doorgym pull_box.launch method:=DoorGym box:=false
-            ```
-
-        * For 6joints
-
-            ```
-            roslaunch doorgym pull_box.launch method:=6joints box:=false
-            ```
-
-        * For 3DOF
+        6. Open one terminal to run tare algorithm
 
             ```
-            roslaunch doorgym pull_box.launch method:=RL_mm box:=false
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
+
+        7. Open two terminal to run pull
+
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=DoorGym box:=false yaml:=goal_ex3_cardboard.yaml
+            ```
+
+    - 6joints
+
+        Following the below steps to execute
+
+        1. 02_environment select **pull_cardboard**
+        2. 03_robot select **husky_ur5_cardboard** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
+
+        6. Open one terminal to run tare algorithm
+
+            ```
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
+
+        7. Open two terminal to run pull
+
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=6joints box:=false yaml:=goal_ex3_cardboard.yaml
+            ```
+
+    - 3DOF
+
+        Following the below steps to execute
+
+        1. 02_environment select **pull_cardboard**
+        2. 03_robot select **husky_ur5_cardboard** 
+        3. 04_box_detection
+        4. 05_inference select **state_machine**
+        5. 06_rviz
+
+        6. Open one terminal to run tare algorithm
+
+            ```
+            cd [path/to/autonomous_exploration_development_environment]
+            source docker_run.sh
+            catkin_make
+            source environment.sh
+            roslaunch vehicle_simulator husky_tare.launch opened:=false normal:=true ignored:=false
+            ```
+
+        7. Open two terminal to run pull
+
+            ```
+            cd [path/to/DoorGym]
+            source docker_run.sh
+            source catkin_make.sh
+            source environment.sh
+            roslaunch doorgym pull_box.launch method:=RL_mm box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
 ## Behavior Tree
@@ -325,22 +475,25 @@ The useful command for procman list below.
 - Stop(ctrl＋t)
 - ReRun(ctrl+r)
 
-Following it order to run command, 03_robot select **husky_ur5** and 05_inference chose **state_machine**.
+Following the below steps to execute
 
-Open one terminal to open behavior tree.
+1. 03_robot select **husky_ur5**
+2. 04_door_detection
+3. 05_inference select **state_machine**
+4. 06_rviz
 
-```
-source docker_join.sh
-source environment.sh
-roslaunch behavior_tree behavior_tree.launch
-```
+5. Open one terminal to open behavior tree.
+
+    ```
+    source docker_join.sh
+    source environment.sh
+    roslaunch behavior_tree behavior_tree.launch
+    ```
 
 you will see below gui, then press "Open Config..." and select open_door.tree, select Debug Mode will show below test button.
 ![](images/bt.png)
 
-Then open three termianl, one is run open_door algorithm, and the other one is open tare to navigate door and goal, the final run open behavior tree.
-
-1. One terminal for tare
+6. One terminal for tare
 
     ```
     cd [path/to/autonomous_exploration_development_environment]
@@ -349,7 +502,7 @@ Then open three termianl, one is run open_door algorithm, and the other one is o
     source environment.sh
     roslaunch vehicle_simulator husky_tare.launch opened:=true normal:=false ignored:=false
     ```
-2. Second terminal for door open
+7. Open two terminal for door open
 
     ```
     cd [path/to/DoorGym]

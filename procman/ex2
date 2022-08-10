@@ -20,4 +20,6 @@ group "03_robot" {
 script "open_env" {
     start cmd "01_core" wait "running";
     wait ms 2000;
+    start cmd "02_room_door" wait "running";
+    wait ms 2000;
 }

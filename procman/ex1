@@ -17,7 +17,7 @@ group "03_robot" {
     }
 }
 cmd "04_door_detection" {
-    exec = "roslaunch door_detector_632 door_detection.launch";
+    exec = "roslaunch door_detector_room door_detection.launch";
     host = "localhost";
 }
 group "05_inference" {
@@ -45,5 +45,7 @@ cmd "06_rviz" {
 
 script "open_env" {
     start cmd "01_core" wait "running";
+    wait ms 2000;
+    start cmd "02_room_door" wait "running";
     wait ms 2000;
 }

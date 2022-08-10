@@ -31,16 +31,16 @@ group "03_robot" {
     }
 }
 cmd "04_box_detection" {
-    exec = "roslaunch door_detector_632 box_detection.launch";
+    exec = "roslaunch door_detector_room box_detection.launch";
     host = "localhost";
 }
 group "05_inference" {
     cmd "pokingbot_box" {
-        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=true";
+        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=true yaml:=goal_ex3_box.yaml";
         host = "localhost";
     }
     cmd "pokingbot_cardboard" {
-        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=false";
+        exec = "roslaunch pokingbot_ros goal_poking_tf.launch ex3:=true box:=false yaml:=goal_ex3_cardboard.yaml";
         host = "localhost";
     }
     cmd "state_machine" {

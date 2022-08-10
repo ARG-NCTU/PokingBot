@@ -9,6 +9,7 @@
     <arg name="angular_scale" default="0.45" />
     <arg name="ex3" default="false"/>
     <arg name="box" default="true"/>
+    <arg name="yaml" default="goal_ex1.yaml"/>
 
     <group ns="$(arg veh)">
         <node pkg="pokingbot_ros" type="pub_gazebo_tf.py" name="pub_gazebo_tf" output="screen" />
@@ -18,6 +19,7 @@
             <param name="angular_scale" value="$(arg angular_scale)" />
             <param name="ex3" value="$(arg ex3)" />
             <param name="box" value="$(arg box)" />
+            <param name="yaml" value="$(arg yaml)" /> 
 
             <remap from="goal_in" to="/move_base_simple/goal" />
             <remap from="laser_in" to="/RL/scan_label" />

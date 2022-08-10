@@ -1,7 +1,7 @@
 <package >
-  <name>door_detector_632</name>
+  <name>door_detector_room</name>
   <version>0.0.1</version>
-  <description>The door_detector_632 package</description>
+  <description>The door_detector_room package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

@@ -39,6 +39,6 @@
 
     </node>
 
-    <node pkg="door_detector_632" type="door_and_ball_v2" name="door_and_ball_v2" output="screen" />
+    <node pkg="door_detector_room" type="door_and_ball_v2" name="door_and_ball_v2" output="screen" />
   </group>
 </launch>

@@ -5,6 +5,7 @@
     <arg name="veh" default="robot" />
     <arg name="cmd" default="cmd_vel" />
     <arg name="joy" default="joy_teleop/joy" />
+    <arg name="yaml" default="goal_ex1.yaml"/>
 
     <group ns="$(arg veh)">
         <node pkg="pokingbot_ros" type="pub_gazebo_tf.py" name="pub_gazebo_tf" output="screen" />
@@ -15,6 +16,7 @@
             <remap from="odom_in" to="truth_map_posestamped" />
             <remap from="joy" to="$(arg joy)" />
             <remap from="cmd_out" to="$(arg cmd)" />
+            <param name="yaml" value="$(arg yaml)" /> 
         </node>
     </group>
 </launch>

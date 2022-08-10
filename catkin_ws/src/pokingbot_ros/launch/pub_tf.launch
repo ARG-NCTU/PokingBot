@@ -4,12 +4,15 @@
 
     <arg name="veh" default="robot" />
     <arg name="loop" default="false"/>
+    <arg name="yaml" default="goal_ex1.yaml"/>
 
     <group ns="$(arg veh)">
         <node pkg="pokingbot_ros" type="pub_gazebo_tf.py" name="pub_gazebo_tf" output="screen" />
     </group>
 
     <group if="$(arg loop)">
-        <node pkg="pokingbot_ros" type="tare.py" name="loop_node" output="screen" />
+        <node pkg="pokingbot_ros" type="tare.py" name="loop_node" output="screen" >
+            <param name="yaml" value="$(arg yaml)" /> 
+        </node>
     </group>
 </launch>
