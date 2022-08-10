@@ -56,7 +56,6 @@ public:
   void scan_process();
   void scan_cb(const sensor_msgs::LaserScan msg);
   bool get_tf();
-  bool laserpoints_tf(const sensor_msgs::LaserScan msg, string target_frame, string source_frame);
   ~Door(){};
 };
 
@@ -65,10 +64,6 @@ bool Door::get_tf(){
   """
   
     Transfer lidar tf from robot to door.
-
-    Args:
-
-      None
 
     Return:
 
@@ -126,10 +121,6 @@ void Door::scan_cb(const sensor_msgs::LaserScan msg){
 
       msg(const sensor_msgs::LaserScan) : laser data.
 
-    Return :
-
-      None
-
   """
   count_door = 0;
   input_scan = msg;
@@ -170,15 +161,7 @@ void Door::scan_process(){
 
   """
 
-    Transfer raw laser to label laser.
-
-    Args:
-
-      None
-
-    Return :
-
-      None
+    Transfer raw laser to label laser on the certain range.
 
   """
 

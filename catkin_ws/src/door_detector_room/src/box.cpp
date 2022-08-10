@@ -57,7 +57,6 @@ public:
   void scan_process();
   void scan_cb(const sensor_msgs::LaserScan msg);
   bool get_tf();
-  bool laserpoints_tf(const sensor_msgs::LaserScan msg, string target_frame, string source_frame);
   ~Box(){};
 };
 
@@ -65,10 +64,6 @@ bool Box::get_tf(){
   """
   
     Transfer lidar tf from robot to box.
-
-    Args:
-
-      None
 
     Return:
 
@@ -130,10 +125,6 @@ void Box::scan_cb(const sensor_msgs::LaserScan msg){
 
       msg(const sensor_msgs::LaserScan) : laser data.
 
-    Return :
-
-      None
-
   """
   count_box = 0;
   input_scan = msg;
@@ -173,15 +164,7 @@ void Box::scan_process(){
 
   """
 
-    Transfer raw laser to label laser.
-
-    Args:
-
-      None
-
-    Return :
-
-      None
+    Transfer raw laser to label laser on the certain range.
 
   """
 
