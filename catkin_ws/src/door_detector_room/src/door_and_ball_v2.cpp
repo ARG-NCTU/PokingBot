@@ -61,7 +61,7 @@ public:
 
 
 bool Door::get_tf(){
-  """
+  /*
   
     Transfer lidar tf from robot to door.
 
@@ -69,7 +69,7 @@ bool Door::get_tf(){
 
       bool : true is success, false is fail.
 
-  """
+  */
 
   //map frame tf broadcast
   transform.setOrigin(tf::Vector3(robotstate.response.pose.position.x,
@@ -113,7 +113,7 @@ bool Door::get_tf(){
   return 1;
 }
 void Door::scan_cb(const sensor_msgs::LaserScan msg){
-  """
+  /*
   
     Get lidar data and run preprocessing.
 
@@ -121,7 +121,7 @@ void Door::scan_cb(const sensor_msgs::LaserScan msg){
 
       msg(const sensor_msgs::LaserScan) : laser data.
 
-  """
+  */
   count_door = 0;
   input_scan = msg;
   output_scan.ranges.assign(msg.ranges.size(), std::numeric_limits<double>::infinity());
@@ -159,11 +159,11 @@ void Door::scan_cb(const sensor_msgs::LaserScan msg){
 
 void Door::scan_process(){
 
-  """
+  /*
 
     Transfer raw laser to label laser on the certain range.
 
-  """
+  */
 
   if(input_scan.ranges.size()>0){
     float o_t_min = input_scan.angle_min, o_t_max = input_scan.angle_max, o_t_inc = input_scan.angle_increment;
