@@ -141,7 +141,7 @@ The useful command for procman list below.
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
         ```
 
-    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 * RL_mm(Ours)
 
@@ -172,7 +172,7 @@ The useful command for procman list below.
         roslaunch doorgym door_open.launch state:=true method:=RL_mm
         ```
 
-    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 ## Experiment
 
@@ -219,7 +219,7 @@ The useful command for procman list below.
             roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true yaml:=goal_ex2.yaml
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 * VX300s
 
@@ -245,7 +245,7 @@ The useful command for procman list below.
             roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true yaml:=goal_ex2.yaml
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 ## Experiment3
 
@@ -312,7 +312,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=DoorGym box:=true
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
     - 6 joints
 
@@ -344,7 +344,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=6joints box:=true
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
             
     - 3 DOF
 
@@ -376,7 +376,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=RL_mm box:=true
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 * Cardboard
 
@@ -422,7 +422,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=DoorGym box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
     - 6joints
 
@@ -454,7 +454,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=6joints box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
     - 3DOF
 
@@ -486,7 +486,7 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=RL_mm box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
-        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
 ## Behavior Tree
 
