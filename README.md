@@ -174,7 +174,7 @@ The useful command for procman list below.
 
     The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
 
-## Experiment
+## Experiment2
 
 We arranged all command in procman, easy to inference our proposed method and Run other baseline.
 
