@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="veh" default="robot"/>
+  <arg name="door" default="true"/>
 
   <group ns="$(arg veh)">
     <node pkg="door_detector_sim" type="lidar_crop" name="lidar_crop" output="screen">
@@ -39,6 +40,8 @@
 
     </node>
 
-    <node pkg="door_detector_room" type="box" name="box" output="screen" />
+    <node pkg="door_detector_room" type="door_and_box" name="door_and_box" output="screen">
+      <param name="door" value="$(arg door)"/>
+    </node>
   </group>
 </launch>

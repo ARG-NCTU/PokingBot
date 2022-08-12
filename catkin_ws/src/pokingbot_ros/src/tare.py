@@ -60,11 +60,11 @@ class GoalNav(object):
 
                 tra = {'environment' : "room_door", "policy": "TARE", "trajectories" : self.total_traj}
 
-                with open(os.path.join(self.my_dir,"../../../../Config/TARE_trajectory.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Results/TARE_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../../../../Config/TARE_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Results/TARE_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
                 

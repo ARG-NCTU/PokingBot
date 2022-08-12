@@ -78,6 +78,8 @@ The useful command for procman list below.
     3. 05_inference select **rl_oa**
     4. 06_rviz
 
+    The experiment result and its trajectories will stored [Results](./Results/) folder.
+
 * TARE
 
     Following the below steps to execute
@@ -96,6 +98,8 @@ The useful command for procman list below.
     3. 04_door_detection
     4. 05_inference select **tare**
     5. 06_rviz
+
+    The experiment result and its trajectories will stored [Results](./Results/) folder.
     
 * Pokingbot
 
@@ -105,6 +109,8 @@ The useful command for procman list below.
     2. 04_door_detection
     3. 05_inference select **pokingbot**
     4. 06_rviz
+
+    The experiment result and its trajectories will stored [Results](./Results/) folder.
 
 * DoorGym
 
@@ -135,6 +141,8 @@ The useful command for procman list below.
         roslaunch doorgym door_open.launch state:=true method:=DoorGym
         ```
 
+    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
 * RL_mm(Ours)
 
     Following the below steps to execute
@@ -164,7 +172,9 @@ The useful command for procman list below.
         roslaunch doorgym door_open.launch state:=true method:=RL_mm
         ```
 
-## Experiment2
+    The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
+## Experiment
 
 We arranged all command in procman, easy to inference our proposed method and Run other baseline.
 
@@ -209,6 +219,8 @@ The useful command for procman list below.
             roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true yaml:=goal_ex2.yaml
             ```
 
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
 * VX300s
 
     Following the below steps to execute
@@ -232,6 +244,8 @@ The useful command for procman list below.
             source environment.sh
             roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true yaml:=goal_ex2.yaml
             ```
+
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
 
 ## Experiment3
 
@@ -266,6 +280,8 @@ The useful command for procman list below.
         4. 05_inference select **pokingbot_box**
         5. 06_rviz
 
+        The experiment result and its trajectories will stored [Results](./Results/) folder.
+
     - DoorGym
 
         Following the below steps to execute
@@ -296,6 +312,8 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=DoorGym box:=true
             ```
 
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
     - 6 joints
 
         Following the below steps to execute
@@ -325,6 +343,9 @@ The useful command for procman list below.
             source environment.sh
             roslaunch doorgym pull_box.launch method:=6joints box:=true
             ```
+
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+            
     - 3 DOF
 
         Following the below steps to execute
@@ -355,6 +376,8 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=RL_mm box:=true
             ```
 
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
 * Cardboard
 
     - Pokingbot
@@ -366,6 +389,8 @@ The useful command for procman list below.
         3. 04_box_detection
         4. 05_inference select **pokingbot_cardboard**
         5. 06_rviz
+
+        The experiment result and its trajectories will stored [Results](./Results/) folder.
 
     - DoorGym
 
@@ -397,6 +422,8 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=DoorGym box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
     - 6joints
 
         Following the below steps to execute
@@ -427,6 +454,8 @@ The useful command for procman list below.
             roslaunch doorgym pull_box.launch method:=6joints box:=false yaml:=goal_ex3_cardboard.yaml
             ```
 
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
+
     - 3DOF
 
         Following the below steps to execute
@@ -456,6 +485,8 @@ The useful command for procman list below.
             source environment.sh
             roslaunch doorgym pull_box.launch method:=RL_mm box:=false yaml:=goal_ex3_cardboard.yaml
             ```
+
+        The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder.
 
 ## Behavior Tree
 

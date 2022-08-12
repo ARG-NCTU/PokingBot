@@ -134,8 +134,5 @@ install(DIRECTORY world/
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIRS})
 
-add_executable(door_and_ball_v2 src/door_and_ball_v2.cpp)
-target_link_libraries(door_and_ball_v2 ${catkin_LIBRARIES})
-
-add_executable(box src/box.cpp)
-target_link_libraries(box ${catkin_LIBRARIES})
+add_executable(door_and_box src/door_and_box.cpp)
+target_link_libraries(door_and_box ${catkin_LIBRARIES})

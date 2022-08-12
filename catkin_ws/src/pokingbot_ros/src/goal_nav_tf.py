@@ -105,11 +105,11 @@ class GoalNav(object):
                     else:
                         obj = "_cardboard"
 
-                with open(os.path.join(self.my_dir,"../../../../Config/pokingbot" + obj +"_trajectory.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Results/pokingbot" + obj +"_trajectory.yaml"), "w") as f:
 
                     yaml.dump(tra, f)
 
-                with open(os.path.join(self.my_dir,"../../../../Config/pokingbot" + obj + "_result.yaml"), "w") as f:
+                with open(os.path.join(self.my_dir,"../../../../Results/pokingbot" + obj + "_result.yaml"), "w") as f:
 
                     yaml.dump(d, f)
 

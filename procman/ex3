@@ -31,7 +31,7 @@ group "03_robot" {
     }
 }
 cmd "04_box_detection" {
-    exec = "roslaunch door_detector_room box_detection.launch";
+    exec = "roslaunch door_detector_room door_and_box_detection.launch door:=false";
     host = "localhost";
 }
 group "05_inference" {
