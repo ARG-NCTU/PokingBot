@@ -138,7 +138,8 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=true method:=DoorGym
+        cd model && python3 download_weight.py
+        roslaunch doorgym door_open.launch state:=true method:=DoorGym weight:=ur5_push.pt
         ```
 
     The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -169,7 +170,8 @@ The useful command for procman list below.
         source docker_run.sh
         source catkin_make.sh
         source environment.sh
-        roslaunch doorgym door_open.launch state:=true method:=RL_mm
+        cd model && python3 download_weight.py
+        roslaunch doorgym door_open.launch state:=true method:=RL_mm weight:=husky_ur5_push.pt
         ```
 
     The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -208,7 +210,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false yaml:=goal_ex2.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=false yaml:=goal_ex2.yaml weight:=husky_ur5_push.pt
             ```
         - For 3 DOF
             ```
@@ -216,7 +219,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true yaml:=goal_ex2.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym door_open.launch state:=false ur5:=true dof:=true yaml:=goal_ex2.yaml weight:=husky_ur5_push_3dof.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -234,7 +238,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false yaml:=goal_ex2.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=false yaml:=goal_ex2.yaml weight:=husky_ur5_push.pt
             ```
         - For 3 DOF
             ```
@@ -242,7 +247,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true yaml:=goal_ex2.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym door_open.launch state:=false ur5:=false dof:=true yaml:=goal_ex2.yaml weight:=husky_ur5_push_3dof.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -309,7 +315,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=DoorGym box:=true
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=DoorGym box:=true weight:=ur5_pull.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -341,7 +348,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=6joints box:=true
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=6joints box:=true weight:=husky_ur5_pull.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -373,7 +381,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=RL_mm box:=true
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=RL_mm box:=true weight:=husky_ur5_pull_3dof.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -419,7 +428,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=DoorGym box:=false yaml:=goal_ex3_cardboard.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=DoorGym box:=false yaml:=goal_ex3_cardboard.yaml weight:=ur5_pull.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -451,7 +461,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=6joints box:=false yaml:=goal_ex3_cardboard.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=6joints box:=false yaml:=goal_ex3_cardboard.yaml weight:=husky_ur5_pull.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
@@ -483,7 +494,8 @@ The useful command for procman list below.
             source docker_run.sh
             source catkin_make.sh
             source environment.sh
-            roslaunch doorgym pull_box.launch method:=RL_mm box:=false yaml:=goal_ex3_cardboard.yaml
+            cd model && python3 download_weight.py
+            roslaunch doorgym pull_box.launch method:=RL_mm box:=false yaml:=goal_ex3_cardboard.yaml weight:=husky_ur5_pull_3dof.pt
             ```
 
         The experiment result and its trajectories will stored [Results](https://github.com/ARG-NCTU/DoorGym/tree/master/Results) folder at [DoorGym](https://github.com/ARG-NCTU/DoorGym) repo.
